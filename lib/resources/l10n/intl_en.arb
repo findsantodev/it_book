@@ -1,0 +1,10 @@
+{
+  "home_app_bar_title": "Jagoan",
+  "@home_app_bar_title": {
+    "description": "home_app_bar_title"
+  },
+  "action_retry": "Retry",
+  "@action_retry": {
+    "description": "action_retry"
+  }
+}
