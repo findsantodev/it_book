@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:palm_code/src/serializers/serializers.dart';
@@ -36,6 +38,12 @@ abstract class BookFormat implements Built<BookFormat, BookFormatBuilder> {
     return standardSerializers.deserializeWith(
       BookFormat.serializer,
       jsonMap,
+    );
+  }
+
+  String toJson() {
+    return json.encode(
+      standardSerializers.serializeWith(BookFormat.serializer, this),
     );
   }
 }

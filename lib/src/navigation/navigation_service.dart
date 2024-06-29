@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:palm_code/src/books/book_detail.dart';
 import 'package:palm_code/src/books/books_page.dart';
+import 'package:palm_code/src/books/books_store.dart';
+import 'package:palm_code/src/books/podo/book_item.dart';
+import 'package:palm_code/src/favorite/favorite_page.dart';
+import 'package:palm_code/src/home/home_page.dart';
 import 'package:palm_code/src/splash/splash_page.dart';
 
 class NavigationService {
   static const routeSplash = 'splash';
+  static const routeHome = 'home';
   static const routeBooks = 'books';
+  static const routeBookDetail = 'book_detail';
+  static const routeFavorite = 'favorite';
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   void pop<T>([T? value]) {
@@ -37,9 +45,31 @@ class NavigationService {
           builder: (_) => const SplashPage(),
           settings: settings,
         );
+      case routeHome:
+        return MaterialPageRoute(
+          builder: (_) => const HomePage(),
+          settings: settings,
+          maintainState: false,
+        );
       case routeBooks:
         return MaterialPageRoute(
-          builder: (_) => const BooksPage(),
+          builder: (_) => BooksPage(
+            booksDashboardFilter: settings.arguments as BooksDashboardFilter?,
+          ),
+          settings: settings,
+          maintainState: false,
+        );
+      case routeBookDetail:
+        return MaterialPageRoute(
+          builder: (_) => BookDetail(
+            bookItem: settings.arguments as BookItem?,
+          ),
+          settings: settings,
+          maintainState: false,
+        );
+      case routeFavorite:
+        return MaterialPageRoute(
+          builder: (_) => const FavoritePage(),
           settings: settings,
           maintainState: false,
         );

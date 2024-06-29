@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:palm_code/src/serializers/serializers.dart';
@@ -23,6 +25,12 @@ abstract class People implements Built<People, PeopleBuilder> {
     return standardSerializers.deserializeWith(
       People.serializer,
       jsonMap,
+    );
+  }
+
+  String toJson() {
+    return json.encode(
+      standardSerializers.serializeWith(People.serializer, this),
     );
   }
 }

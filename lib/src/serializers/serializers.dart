@@ -12,7 +12,7 @@ part 'serializers.g.dart';
 
 @SerializersFor([
   BooksResponse,
-  BooksItem,
+  BookItem,
   BookFormat,
   People,
 ])

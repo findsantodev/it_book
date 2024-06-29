@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -7,8 +9,8 @@ import 'package:palm_code/src/serializers/serializers.dart';
 
 part 'book_item.g.dart';
 
-abstract class BooksItem implements Built<BooksItem, BooksItemBuilder> {
-  factory BooksItem([void Function(BooksItemBuilder)? updates]) = _$BooksItem;
+abstract class BookItem implements Built<BookItem, BookItemBuilder> {
+  factory BookItem([void Function(BookItemBuilder)? updates]) = _$BookItem;
   @BuiltValueField(wireName: "id")
   int get id;
 
@@ -42,14 +44,20 @@ abstract class BooksItem implements Built<BooksItem, BooksItemBuilder> {
   @BuiltValueField(wireName: "download_count")
   int? get downloadCount;
 
-  BooksItem._();
+  BookItem._();
 
-  static Serializer<BooksItem> get serializer => _$booksItemSerializer;
+  static Serializer<BookItem> get serializer => _$bookItemSerializer;
 
-  static BooksItem? fromJson(Map<String, dynamic> jsonMap) {
+  static BookItem? fromJson(Map<String, dynamic> jsonMap) {
     return standardSerializers.deserializeWith(
-      BooksItem.serializer,
+      BookItem.serializer,
       jsonMap,
+    );
+  }
+
+  String toJson() {
+    return json.encode(
+      standardSerializers.serializeWith(BookItem.serializer, this),
     );
   }
 }

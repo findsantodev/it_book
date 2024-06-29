@@ -10,6 +10,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     this.actions,
     this.showBackButton = true,
     this.customLeading = false,
+    this.customTitleWidget,
     this.leading,
   });
 
@@ -18,12 +19,13 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
   final bool showBackButton;
   final Widget? leading;
+  final Widget? customTitleWidget;
   final bool customLeading;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      centerTitle: true,
+      centerTitle: false,
       elevation: 0,
       leading: customLeading
           ? leading
@@ -48,17 +50,21 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ),
-      titleSpacing: 20.0,
+      titleSpacing: customLeading && Navigator.canPop(context) ? 0.0 : 15,
       toolbarHeight: 48,
       automaticallyImplyLeading: false,
       actions: actions,
-      title: Text(
-        title ?? "",
-        textAlign: TextAlign.center,
-        style: Theme.of(context).body3,
-      ),
+      title: customTitleWidget ??
+          Text(
+            title ?? "",
+            textAlign: TextAlign.start,
+            style: Theme.of(context).display4,
+          ),
       iconTheme: IconThemeData(color: Theme.of(context).contentPrimary),
       systemOverlayStyle: SystemUiOverlayStyle.dark,
+      backgroundColor: customTitleWidget != null
+          ? Theme.of(context).backgroundLightest
+          : Theme.of(context).backgroundApp,
     );
   }
 

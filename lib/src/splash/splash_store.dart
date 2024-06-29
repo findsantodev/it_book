@@ -45,7 +45,7 @@ abstract class _SplashStore with Store {
       ],
     );
 
-    _navigateToBooks();
+    _navigateToHome();
 
     return;
   }
@@ -55,7 +55,7 @@ abstract class _SplashStore with Store {
     initApp();
   }
 
-  void _navigateToBooks() {
-    _navigationService.pushReplacement(NavigationService.routeBooks);
+  void _navigateToHome() {
+    _navigationService.pushReplacement(NavigationService.routeHome);
   }
 }

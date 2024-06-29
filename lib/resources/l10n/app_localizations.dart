@@ -104,6 +104,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Retry'**
   String get action_retry;
+
+  /// home_bottom_nav_dashboard
+  ///
+  /// In en, this message translates to:
+  /// **'Dashboard'**
+  String get home_bottom_nav_dashboard;
+
+  /// home_bottom_nav_favorite
+  ///
+  /// In en, this message translates to:
+  /// **'Favorite'**
+  String get home_bottom_nav_favorite;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

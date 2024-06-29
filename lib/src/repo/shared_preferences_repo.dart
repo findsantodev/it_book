@@ -45,4 +45,21 @@ class SharedPreferencesRepo {
     }
     return successSavingLanguageCode && successSavingCountryCode;
   }
+
+  Future<void> saveFavoriteBooks(List<String> favoriteBookIds) async {
+    final instance = await _sharedPreferencesInstance;
+    await instance.setStringList('book_list', favoriteBookIds);
+  }
+
+  Future<List<String>> getFavoriteBooks() async {
+    final instance = await _sharedPreferencesInstance;
+    final List<String>? listOfStringBookId =
+        instance.getStringList('book_list');
+
+    if (listOfStringBookId != null) {
+      return listOfStringBookId;
+    }
+
+    return [];
+  }
 }

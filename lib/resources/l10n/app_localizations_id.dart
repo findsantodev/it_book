@@ -9,4 +9,10 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get action_retry => 'Retry';
+
+  @override
+  String get home_bottom_nav_dashboard => 'Beranda';
+
+  @override
+  String get home_bottom_nav_favorite => 'Favorite';
 }

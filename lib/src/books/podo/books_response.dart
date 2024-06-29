@@ -25,7 +25,7 @@ abstract class BooksResponse
   String? get previous;
 
   @BuiltValueField()
-  BuiltList<BooksItem>? get results;
+  BuiltList<BookItem>? get results;
 
   BooksResponse._();
 

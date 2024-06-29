@@ -1,4 +1,6 @@
 {
   "home_app_bar_title": "Jagoan",
-  "home_app_bar_title": "Coba Lagi"
+  "home_app_bar_title": "Coba Lagi",
+  "home_bottom_nav_dashboard": "Beranda",
+  "home_bottom_nav_favorite": "Favorite"
 }

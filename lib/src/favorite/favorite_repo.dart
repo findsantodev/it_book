@@ -4,25 +4,17 @@ import 'package:palm_code/src/books/podo/books_response.dart';
 import 'package:palm_code/src/network/network.dart';
 import 'package:palm_code/src/repo/shared_preferences_repo.dart';
 
-class BooksRepo {
+class FavoriteRepo {
   final Network _network;
 
-  BooksRepo({
+  FavoriteRepo({
     required Network network,
   }) : _network = network;
 
-  Future<Response<BooksResponse>> getNextPageBooks({String? path}) {
-    return _network.api.getNextPageBooks(path: path);
-  }
-
-  Future<Response<BooksResponse>> filterBooks({
-    String? searchKeyword,
-    String? topic,
+  Future<Response<BooksResponse>> getFavoriteBooks({
+    required String favoriteBookIds,
   }) {
-    return _network.api.filterBooks(
-      searchKeyword: searchKeyword != null ? "?search=$searchKeyword" : "",
-      topic: topic != null ? "?topic=$topic" : "",
-    );
+    return _network.api.getFavoriteBooks(ids: favoriteBookIds);
   }
 
   Future<List<String>> getListOfFavoriteBookFromLocal() async {
