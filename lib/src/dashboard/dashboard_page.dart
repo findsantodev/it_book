@@ -42,6 +42,8 @@ class _DashboardPageState extends State<DashboardPage> {
           builder: (context) {
             if (_dashboardStore.dashboardState == DashboardState.loading) {
               return _buildLoading();
+            } else if (_dashboardStore.dashboardErrorMessage != "") {
+              return _buildError();
             }
 
             return _buildBody();
@@ -52,6 +54,9 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   Widget _buildLoading() => const Center(child: CircularProgressWidget());
+
+  Widget _buildError() =>
+      Center(child: Text(_dashboardStore.dashboardErrorMessage));
 
   Widget _buildBody() {
     return Padding(

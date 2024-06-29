@@ -121,6 +121,8 @@ class _BooksPageState extends State<BooksPage> {
                   return Container();
                 } else if (_booksStore.booksState == BooksState.loading) {
                   return _buildLoading();
+                } else if (_booksStore.booksErrorMessage != "") {
+                  return _buildError();
                 }
 
                 return _buildBody();
@@ -133,6 +135,8 @@ class _BooksPageState extends State<BooksPage> {
   }
 
   Widget _buildLoading() => const Center(child: CircularProgressWidget());
+
+  Widget _buildError() => Center(child: Text(_booksStore.booksErrorMessage));
 
   Widget _buildBody() {
     return Padding(

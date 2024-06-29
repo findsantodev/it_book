@@ -36,6 +36,8 @@ class _FavoritePageState extends State<FavoritePage> {
           builder: (context) {
             if (_favoriteStore.favoriteState == FavoriteState.loading) {
               return _buildLoading();
+            } else if (_favoriteStore.favoriteErrorMessage != "") {
+              return _buildError();
             }
 
             return _buildBody();
@@ -46,6 +48,9 @@ class _FavoritePageState extends State<FavoritePage> {
   }
 
   Widget _buildLoading() => const Center(child: CircularProgressWidget());
+
+  Widget _buildError() =>
+      Center(child: Text(_favoriteStore.favoriteErrorMessage));
 
   Widget _buildBody() {
     return Padding(
