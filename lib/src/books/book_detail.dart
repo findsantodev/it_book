@@ -6,6 +6,7 @@ import 'package:palm_code/resources/constanst/asset_constanst.dart';
 import 'package:palm_code/resources/theme.dart';
 import 'package:palm_code/src/books/podo/book_item.dart';
 import 'package:palm_code/src/favorite/favorite_store.dart';
+import 'package:palm_code/src/i18n/localization_store.dart';
 import 'package:palm_code/src/widgets/app_bar_widget.dart';
 import 'package:palm_code/src/widgets/image_widget.dart';
 import 'package:palm_code/src/widgets/primary_button.dart';
@@ -20,11 +21,13 @@ class BookDetail extends StatefulWidget {
 
 class _BookDetailState extends State<BookDetail> {
   late FavoriteStore _favoriteStore;
+  late LocalizationStore _localizationStore;
 
   @override
   void initState() {
     _favoriteStore = GetIt.instance.get<FavoriteStore>()
       ..fetchFavoriteBooksFromLocal();
+    _localizationStore = GetIt.instance.get<LocalizationStore>();
     super.initState();
   }
 
@@ -59,7 +62,8 @@ class _BookDetailState extends State<BookDetail> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   PrimaryButton(
-                    text: "Baca",
+                    text: _localizationStore
+                        .appLocalizations.book_detail_read_button_label,
                     onPressed: () => _favoriteStore.navigateToWebPage(
                       widget._bookItem?.formats?.textHTML ?? "",
                     ),
@@ -79,7 +83,9 @@ class _BookDetailState extends State<BookDetail> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSectionLabel("Informasi Buku"),
+          _buildSectionLabel(
+            _localizationStore.appLocalizations.book_detail_information_title,
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -91,7 +97,10 @@ class _BookDetailState extends State<BookDetail> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 8),
-                    _buildInforamtionTitle("PENULIS"),
+                    _buildInforamtionTitle(
+                      _localizationStore.appLocalizations
+                          .book_detail_information_author_label,
+                    ),
                     _buildInformationDescription(
                       widget._bookItem?.authors?.first.name ?? "",
                     ),
@@ -107,7 +116,10 @@ class _BookDetailState extends State<BookDetail> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 8),
-                    _buildInforamtionTitle("PENULIS"),
+                    _buildInforamtionTitle(
+                      _localizationStore.appLocalizations
+                          .book_detail_information_translator_label,
+                    ),
                     _buildInformationDescription(
                       widget._bookItem?.translators?.first.name ?? "",
                     ),
@@ -123,7 +135,10 @@ class _BookDetailState extends State<BookDetail> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 8),
-                    _buildInforamtionTitle("CATEGORY"),
+                    _buildInforamtionTitle(
+                      _localizationStore.appLocalizations
+                          .book_detail_information_category_label,
+                    ),
                     _buildInformationDescription(
                       widget._bookItem?.bookshelves?.join(', ') ?? "",
                     ),
@@ -139,7 +154,10 @@ class _BookDetailState extends State<BookDetail> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 8),
-                    _buildInforamtionTitle("TOPIC"),
+                    _buildInforamtionTitle(
+                      _localizationStore
+                          .appLocalizations.book_detail_information_topic_label,
+                    ),
                     _buildInformationDescription(
                       widget._bookItem?.subjects?.join(', ') ?? "",
                     ),
@@ -155,7 +173,10 @@ class _BookDetailState extends State<BookDetail> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 8),
-                    _buildInforamtionTitle("BAHASA"),
+                    _buildInforamtionTitle(
+                      _localizationStore.appLocalizations
+                          .book_detail_information_language_label,
+                    ),
                     _buildInformationDescription(
                       widget._bookItem?.languages?.join(', ') ?? "",
                     ),
@@ -170,11 +191,16 @@ class _BookDetailState extends State<BookDetail> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 8),
-                    _buildInforamtionTitle("COPYRIGHT"),
+                    _buildInforamtionTitle(
+                      _localizationStore.appLocalizations
+                          .book_detail_information_copyright_label,
+                    ),
                     _buildInformationDescription(
                       widget._bookItem?.copyright ?? false
-                          ? "Dilindungi"
-                          : "Bebas",
+                          ? _localizationStore.appLocalizations
+                              .book_detail_information_copyright_valid_label
+                          : _localizationStore.appLocalizations
+                              .book_detail_information_copyright_invalid_label,
                     ),
                   ],
                 ),
@@ -188,7 +214,10 @@ class _BookDetailState extends State<BookDetail> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 8),
-                    _buildInforamtionTitle("DIUNDUH"),
+                    _buildInforamtionTitle(
+                      _localizationStore.appLocalizations
+                          .book_detail_information_download_label,
+                    ),
                     Row(
                       children: [
                         Icon(

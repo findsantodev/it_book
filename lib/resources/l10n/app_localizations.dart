@@ -93,6 +93,12 @@ abstract class AppLocalizations {
     Locale('id')
   ];
 
+  /// empty_section_label
+  ///
+  /// In en, this message translates to:
+  /// **'Empty'**
+  String get empty_section_label;
+
   /// home_app_bar_title
   ///
   /// In en, this message translates to:
@@ -116,6 +122,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Favorite'**
   String get home_bottom_nav_favorite;
+
+  /// dashboard_popular_book_title
+  ///
+  /// In en, this message translates to:
+  /// **'Popular Books'**
+  String get dashboard_popular_book_title;
+
+  /// dashboard_popular_book_see_more_label
+  ///
+  /// In en, this message translates to:
+  /// **'See More'**
+  String get dashboard_popular_book_see_more_label;
+
+  /// dashboard_best_book_title
+  ///
+  /// In en, this message translates to:
+  /// **'Editor Choice'**
+  String get dashboard_best_book_title;
+
+  /// dashboard_best_book_see_more_label
+  ///
+  /// In en, this message translates to:
+  /// **'See More'**
+  String get dashboard_best_book_see_more_label;
+
+  /// books_search_hint_label
+  ///
+  /// In en, this message translates to:
+  /// **'Search for Books'**
+  String get books_search_hint_label;
+
+  /// book_detail_read_button_label
+  ///
+  /// In en, this message translates to:
+  /// **'READ'**
+  String get book_detail_read_button_label;
+
+  /// book_detail_information_title
+  ///
+  /// In en, this message translates to:
+  /// **'Book Information'**
+  String get book_detail_information_title;
+
+  /// book_detail_information_author_label
+  ///
+  /// In en, this message translates to:
+  /// **'AUTHORS'**
+  String get book_detail_information_author_label;
+
+  /// book_detail_information_translator_label
+  ///
+  /// In en, this message translates to:
+  /// **'TRANSLATORS'**
+  String get book_detail_information_translator_label;
+
+  /// book_detail_information_category_label
+  ///
+  /// In en, this message translates to:
+  /// **'CATEGORY'**
+  String get book_detail_information_category_label;
+
+  /// book_detail_information_topic_label
+  ///
+  /// In en, this message translates to:
+  /// **'TOPIC'**
+  String get book_detail_information_topic_label;
+
+  /// book_detail_information_language_label
+  ///
+  /// In en, this message translates to:
+  /// **'LANGUAGES'**
+  String get book_detail_information_language_label;
+
+  /// book_detail_information_copyright_label
+  ///
+  /// In en, this message translates to:
+  /// **'COPYRIGHT'**
+  String get book_detail_information_copyright_label;
+
+  /// book_detail_information_copyright_valid_label
+  ///
+  /// In en, this message translates to:
+  /// **'Patent'**
+  String get book_detail_information_copyright_valid_label;
+
+  /// book_detail_information_copyright_invalid_label
+  ///
+  /// In en, this message translates to:
+  /// **'Open Source'**
+  String get book_detail_information_copyright_invalid_label;
+
+  /// book_detail_information_download_label
+  ///
+  /// In en, this message translates to:
+  /// **'Downloaded'**
+  String get book_detail_information_download_label;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

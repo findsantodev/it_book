@@ -1,6 +1,23 @@
 {
+  "empty_section_label": "Kosong",
   "home_app_bar_title": "Jagoan",
   "home_app_bar_title": "Coba Lagi",
   "home_bottom_nav_dashboard": "Beranda",
-  "home_bottom_nav_favorite": "Favorite"
+  "home_bottom_nav_favorite": "Favorite",
+  "dashboard_popular_book_title": "Buku Populer",
+  "dashboard_popular_book_see_more_label": "Lihat Semua",
+  "dashboard_best_book_title": "Pilihan Editor",
+  "dashboard_best_book_see_more_label": "Lihat Semua",
+  "books_search_hint_label": "Cari Buku",
+  "book_detail_read_button_label": "Baca",
+  "book_detail_information_title": "Informasi Buku",
+  "book_detail_information_author_label": "PENULIS",
+  "book_detail_information_translator_label": "PENERJEMAH",
+  "book_detail_information_category_label": "KATEGORI",
+  "book_detail_information_topic_label": "TOPIK",
+  "book_detail_information_language_label": "BAHASA",
+  "book_detail_information_copyright_label": "HAK CIPTA",
+  "book_detail_information_copyright_valid_label": "Dilindungi",
+  "book_detail_information_copyright_invalid_label": "Bebas",
+  "book_detail_information_download_label": "DIUNDUH"
 }

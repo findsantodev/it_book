@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:palm_code/resources/constanst/asset_constanst.dart';
 import 'package:palm_code/resources/theme.dart';
 import 'package:palm_code/src/books/books_store.dart';
+import 'package:palm_code/src/i18n/localization_store.dart';
 import 'package:palm_code/src/widgets/app_bar_widget.dart';
 import 'package:palm_code/src/widgets/circular_progress_widget.dart';
 import 'package:palm_code/src/widgets/image_widget.dart';
@@ -19,6 +20,8 @@ class BooksPage extends StatefulWidget {
 
 class _BooksPageState extends State<BooksPage> {
   late BooksStore _booksStore;
+  late LocalizationStore _localizationStore;
+
   final ScrollController _scrollController = ScrollController();
   final TextEditingController _searchTextController = TextEditingController();
   final FocusNode _focus = FocusNode();
@@ -27,6 +30,7 @@ class _BooksPageState extends State<BooksPage> {
   @override
   void initState() {
     _booksStore = GetIt.instance.get<BooksStore>();
+    _localizationStore = GetIt.instance.get<LocalizationStore>();
     _scrollController.addListener(_scrollListener);
     _focus.addListener(_onFocusChange);
 
@@ -93,7 +97,8 @@ class _BooksPageState extends State<BooksPage> {
             child: SearchFieldWidget(
               controller: _searchTextController,
               focus: _focus,
-              hintText: "Search for Books",
+              hintText:
+                  _localizationStore.appLocalizations.books_search_hint_label,
               enabled: true,
               onEditingComplete: () {
                 if (_focus.hasFocus) {
@@ -135,7 +140,9 @@ class _BooksPageState extends State<BooksPage> {
       child: Observer(
         builder: (context) {
           if (_booksStore.listOfBook.isEmpty) {
-            return const Text("empty");
+            return Text(
+              _localizationStore.appLocalizations.empty_section_label,
+            );
           } else {
             return Column(
               children: [

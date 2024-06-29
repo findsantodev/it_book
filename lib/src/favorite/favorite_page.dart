@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:palm_code/resources/constanst/asset_constanst.dart';
 import 'package:palm_code/resources/theme.dart';
 import 'package:palm_code/src/favorite/favorite_store.dart';
+import 'package:palm_code/src/i18n/localization_store.dart';
 import 'package:palm_code/src/widgets/circular_progress_widget.dart';
 import 'package:palm_code/src/widgets/image_widget.dart';
 
@@ -16,10 +17,12 @@ class FavoritePage extends StatefulWidget {
 
 class _FavoritePageState extends State<FavoritePage> {
   late FavoriteStore _favoriteStore;
+  late LocalizationStore _localizationStore;
 
   @override
   void initState() {
     _favoriteStore = GetIt.instance.get<FavoriteStore>()..init();
+    _localizationStore = GetIt.instance.get<LocalizationStore>();
     super.initState();
   }
 
@@ -50,7 +53,9 @@ class _FavoritePageState extends State<FavoritePage> {
       child: Observer(
         builder: (context) {
           if (_favoriteStore.listOfFavoriteBook.isEmpty) {
-            return const Text("empty");
+            return Text(
+              _localizationStore.appLocalizations.empty_section_label,
+            );
           } else {
             return Column(
               children: [

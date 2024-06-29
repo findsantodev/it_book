@@ -7,6 +7,7 @@ import 'package:palm_code/resources/theme.dart';
 import 'package:palm_code/src/books/books_store.dart';
 import 'package:palm_code/src/books/podo/book_item.dart';
 import 'package:palm_code/src/dashboard/dashboard_store.dart';
+import 'package:palm_code/src/i18n/localization_store.dart';
 import 'package:palm_code/src/widgets/circular_progress_widget.dart';
 import 'package:palm_code/src/widgets/image_widget.dart';
 import 'package:palm_code/src/widgets/search_field_widget.dart';
@@ -20,10 +21,12 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   late DashboardStore _dashboardStore;
+  late LocalizationStore _localizationStore;
 
   @override
   void initState() {
     _dashboardStore = GetIt.instance.get<DashboardStore>()..init();
+    _localizationStore = GetIt.instance.get<LocalizationStore>();
 
     super.initState();
   }
@@ -57,7 +60,9 @@ class _DashboardPageState extends State<DashboardPage> {
         builder: (context) {
           if (_dashboardStore.listOfPopularBook.isEmpty &&
               _dashboardStore.listOfBestBook.isEmpty) {
-            return const Text("empty");
+            return Text(
+              _localizationStore.appLocalizations.empty_section_label,
+            );
           } else {
             return SingleChildScrollView(
               child: Column(
@@ -70,8 +75,9 @@ class _DashboardPageState extends State<DashboardPage> {
                     child: GestureDetector(
                       onTap: () => _dashboardStore
                           .navigateToBooks(BooksDashboardFilter.search),
-                      child: const SearchFieldWidget(
-                        hintText: "Search for Books",
+                      child: SearchFieldWidget(
+                        hintText: _localizationStore
+                            .appLocalizations.books_search_hint_label,
                         enabled: false,
                       ),
                     ),
@@ -79,13 +85,19 @@ class _DashboardPageState extends State<DashboardPage> {
                   const SizedBox(height: 16),
                   Row(
                     children: [
-                      Expanded(child: _buildSectionLabel("Buku Populer")),
+                      Expanded(
+                        child: _buildSectionLabel(
+                          _localizationStore
+                              .appLocalizations.dashboard_popular_book_title,
+                        ),
+                      ),
                       const SizedBox(width: 4),
                       GestureDetector(
                         onTap: () => _dashboardStore
                             .navigateToBooks(BooksDashboardFilter.popular),
                         child: Text(
-                          "Lihat Semua",
+                          _localizationStore.appLocalizations
+                              .dashboard_popular_book_see_more_label,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           textAlign: TextAlign.start,
@@ -115,13 +127,19 @@ class _DashboardPageState extends State<DashboardPage> {
                   const SizedBox(height: 32),
                   Row(
                     children: [
-                      Expanded(child: _buildSectionLabel("Pilihan Editor")),
+                      Expanded(
+                        child: _buildSectionLabel(
+                          _localizationStore
+                              .appLocalizations.dashboard_best_book_title,
+                        ),
+                      ),
                       const SizedBox(width: 4),
                       GestureDetector(
                         onTap: () => _dashboardStore
                             .navigateToBooks(BooksDashboardFilter.best),
                         child: Text(
-                          "Lihat Semua",
+                          _localizationStore.appLocalizations
+                              .dashboard_best_book_see_more_label,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           textAlign: TextAlign.start,

@@ -1,4 +1,8 @@
 {
+  "empty_section_label": "Empty",
+  "@empty_section_label": {
+    "description": "empty_section_label"
+  },
   "home_app_bar_title": "Jagoan",
   "@home_app_bar_title": {
     "description": "home_app_bar_title"
@@ -14,5 +18,69 @@
   "home_bottom_nav_favorite": "Favorite",
   "@home_bottom_nav_favorite": {
     "description": "home_bottom_nav_favorite"
+  },
+  "dashboard_popular_book_title": "Popular Books",
+  "@dashboard_popular_book_title": {
+    "description": "dashboard_popular_book_title"
+  },
+  "dashboard_popular_book_see_more_label": "See More",
+  "@dashboard_popular_book_see_more_label": {
+    "description": "dashboard_popular_book_see_more_label"
+  },
+  "dashboard_best_book_title": "Editor Choice",
+  "@dashboard_best_book_title": {
+    "description": "dashboard_best_book_title"
+  },
+  "dashboard_best_book_see_more_label": "See More",
+  "@dashboard_best_book_see_more_label": {
+    "description": "dashboard_best_book_see_more_label"
+  },
+  "books_search_hint_label": "Search for Books",
+  "@books_search_hint_label": {
+    "description": "books_search_hint_label"
+  },
+  "book_detail_read_button_label": "READ",
+  "@book_detail_read_button_label": {
+    "description": "book_detail_read_button_label"
+  },
+  "book_detail_information_title": "Book Information",
+  "@book_detail_information_title": {
+    "description": "book_detail_information_title"
+  },
+  "book_detail_information_author_label": "AUTHORS",
+  "@book_detail_information_author_label": {
+    "description": "book_detail_information_author_label"
+  },
+  "book_detail_information_translator_label": "TRANSLATORS",
+  "@book_detail_information_translator_label": {
+    "description": "book_detail_information_translator_label"
+  },
+  "book_detail_information_category_label": "CATEGORY",
+  "@book_detail_information_category_label": {
+    "description": "book_detail_information_category_label"
+  },
+  "book_detail_information_topic_label": "TOPIC",
+  "@book_detail_information_topic_label": {
+    "description": "book_detail_information_topic_label"
+  },
+  "book_detail_information_language_label": "LANGUAGES",
+  "@book_detail_information_language_label": {
+    "description": "book_detail_information_language_label"
+  },
+  "book_detail_information_copyright_label": "COPYRIGHT",
+  "@book_detail_information_copyright_label": {
+    "description": "book_detail_information_copyright_label"
+  },
+  "book_detail_information_copyright_valid_label": "Patent",
+  "@book_detail_information_copyright_valid_label": {
+    "description": "book_detail_information_copyright_valid_label"
+  },
+  "book_detail_information_copyright_invalid_label": "Open Source",
+  "@book_detail_information_copyright_invalid_label": {
+    "description": "book_detail_information_copyright_invalid_label"
+  },
+  "book_detail_information_download_label": "Downloaded",
+  "@book_detail_information_download_label": {
+    "description": "book_detail_information_download_label"
   }
 }
