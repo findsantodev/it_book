@@ -8,9 +8,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get empty_section_label => 'Kosong';
 
   @override
-  String get home_app_bar_title => 'Coba Lagi';
-
-  @override
   String get action_retry => 'Retry';
 
   @override

@@ -8,9 +8,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get empty_section_label => 'Empty';
 
   @override
-  String get home_app_bar_title => 'Jagoan';
-
-  @override
   String get action_retry => 'Retry';
 
   @override

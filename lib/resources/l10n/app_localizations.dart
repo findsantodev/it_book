@@ -99,12 +99,6 @@ abstract class AppLocalizations {
   /// **'Empty'**
   String get empty_section_label;
 
-  /// home_app_bar_title
-  ///
-  /// In en, this message translates to:
-  /// **'Jagoan'**
-  String get home_app_bar_title;
-
   /// action_retry
   ///
   /// In en, this message translates to:
