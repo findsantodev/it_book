@@ -55,47 +55,58 @@ abstract class _FavoriteStore with Store {
 
   @action
   Future fetchFavoriteBooks() async {
-    if (listOfFavoriteBookId.isNotEmpty) {
-      if (await _connectionService.hasInternet()) {
-        try {
-          final response = await _favoriteRepo.getFavoriteBooks(
-            favoriteBookIds: listOfFavoriteBookId.join(','),
-          );
+    if (await _connectionService.hasInternet()) {
+      Log.debug("FavoriteStore", "Has Internet Connection");
 
-          Log.debug("FavoriteStore", response.toString());
+      try {
+        final response = await _favoriteRepo.getFavoriteBooks(
+          favoriteBookIds: listOfFavoriteBookId.join(','),
+        );
 
-          // HTTP level error
-          if (!response.isSuccessful) {
-            favoriteErrorMessage = "${response.error}";
-            Log.debug("FavoriteStore", "${response.error}");
-            throw favoriteErrorMessage;
-          }
+        Log.debug("FavoriteStore", response.toString());
 
-          // Application level error
-          else if (response.body!.detail != null) {
-            favoriteErrorMessage = "${response.body!.detail}";
-            Log.debug("FavoriteStore", response.body!.detail);
-            throw favoriteErrorMessage;
-          } else {
-            if (response.body?.results != null) {
-              listOfFavoriteBook = response.body?.results?.toList() ?? [];
-            }
-
-            Log.debug("FavoriteStore", response.body!.toString());
-          }
-          // Exception caused by network, parsing or other unhandled cases
-        } catch (e, stacktrace) {
-          favoriteErrorMessage = "Unable to fetch favorite data : $e";
-          Log.debug("FavoriteStore", e.toString(), e, stacktrace);
+        // HTTP level error
+        if (!response.isSuccessful) {
+          favoriteErrorMessage = "${response.error}";
+          Log.debug("FavoriteStore", "${response.error}");
+          throw favoriteErrorMessage;
         }
-      } else {}
+
+        // Application level error
+        else if (response.body!.detail != null) {
+          favoriteErrorMessage = "${response.body!.detail}";
+          Log.debug("FavoriteStore", response.body!.detail);
+          throw favoriteErrorMessage;
+        } else {
+          if (response.body?.results != null) {
+            listOfFavoriteBook = response.body?.results?.toList() ?? [];
+            await _favoriteRepo.setFavoriteBooksToLocal(
+              listOfBooks: listOfFavoriteBook,
+            );
+          }
+
+          Log.debug("FavoriteStore", response.body!.toString());
+        }
+        // Exception caused by network, parsing or other unhandled cases
+      } catch (e, stacktrace) {
+        favoriteErrorMessage = "Unable to fetch favorite data : $e";
+        Log.debug("FavoriteStore", e.toString(), e, stacktrace);
+      }
+    } else {
+      final result = await _favoriteRepo.getFavoriteBooksFromLocal();
+      if (result.isNotEmpty) {
+        if (result.first != null) {
+          listOfFavoriteBook = result.nonNulls.toList();
+        }
+      }
+      Log.debug("FavoriteStore", "No Internet Connection");
     }
   }
 
   @action
   Future fetchFavoriteBooksFromLocal() async {
     try {
-      final result = await _favoriteRepo.getListOfFavoriteBookFromLocal();
+      final result = await _favoriteRepo.getListOfFavoriteBookIdsFromLocal();
       listOfFavoriteBookId = result;
       Log.debug("FavoriteStore", "Lenght of favorite book: ${result.length}");
     } catch (e, stacktrace) {
@@ -108,7 +119,7 @@ abstract class _FavoriteStore with Store {
   Future addBookToFavorite(String bookId) async {
     listOfFavoriteBookId = listOfFavoriteBookId..add(bookId);
     Log.debug("FavoriteStore", "Add book with id $bookId to favorite");
-    await _favoriteRepo.saveFavoriteBookToLocal(listOfFavoriteBookId);
+    await _favoriteRepo.saveFavoriteBookIdsToLocal(listOfFavoriteBookId);
     await fetchFavoriteBooksFromLocal();
     Log.debug(
       "FavoriteStore",
@@ -120,7 +131,7 @@ abstract class _FavoriteStore with Store {
   Future removeBookToFavorite(String bookId) async {
     listOfFavoriteBookId = listOfFavoriteBookId..remove(bookId);
     Log.debug("FavoriteStore", "Remove book with id $bookId from favorite");
-    await _favoriteRepo.saveFavoriteBookToLocal(listOfFavoriteBookId);
+    await _favoriteRepo.saveFavoriteBookIdsToLocal(listOfFavoriteBookId);
     await fetchFavoriteBooksFromLocal();
   }
 
@@ -129,5 +140,14 @@ abstract class _FavoriteStore with Store {
       NavigationService.routeBookDetail,
       arguments: _bookItem,
     );
+  }
+
+  Future navigateToWebPage(String url) async {
+    if (await _connectionService.hasInternet()) {
+      _navigationService.push(
+        NavigationService.routeWeb,
+        arguments: url,
+      );
+    }
   }
 }

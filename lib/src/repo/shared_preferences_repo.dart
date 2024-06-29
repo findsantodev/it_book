@@ -1,5 +1,6 @@
 import 'package:flutter/painting.dart';
 import 'package:meta/meta.dart';
+import 'package:palm_code/resources/constanst/shared_preference_constanst.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesRepo {
@@ -46,18 +47,34 @@ class SharedPreferencesRepo {
     return successSavingLanguageCode && successSavingCountryCode;
   }
 
-  Future<void> saveFavoriteBooks(List<String> favoriteBookIds) async {
+  Future<void> saveFavoriteBooksIds(List<String> favoriteBookIds) async {
     final instance = await _sharedPreferencesInstance;
-    await instance.setStringList('book_list', favoriteBookIds);
+    await instance.setStringList(favoriteBookIdsKey, favoriteBookIds);
   }
 
-  Future<List<String>> getFavoriteBooks() async {
+  Future<List<String>> getFavoriteBooksIds() async {
     final instance = await _sharedPreferencesInstance;
     final List<String>? listOfStringBookId =
-        instance.getStringList('book_list');
+        instance.getStringList(favoriteBookIdsKey);
 
     if (listOfStringBookId != null) {
       return listOfStringBookId;
+    }
+
+    return [];
+  }
+
+  Future<void> saveFavoriteBooks(List<String> favoriteBook, String key) async {
+    final instance = await _sharedPreferencesInstance;
+    await instance.setStringList(key, favoriteBook);
+  }
+
+  Future<List<String>> getFavoriteBooks(String key) async {
+    final instance = await _sharedPreferencesInstance;
+    final List<String>? listOfStringBook = instance.getStringList(key);
+
+    if (listOfStringBook != null) {
+      return listOfStringBook;
     }
 
     return [];

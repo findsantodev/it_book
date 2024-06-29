@@ -13,6 +13,7 @@ import 'package:palm_code/src/i18n/localization_store.dart';
 import 'package:palm_code/src/navigation/navigation_service.dart';
 import 'package:palm_code/src/network/network.dart';
 import 'package:palm_code/src/splash/splash_store.dart';
+import 'package:palm_code/src/web/web_store.dart';
 
 void setUpDI() {
   GetIt.instance.registerSingleton(PackageInfo.fromPlatform());
@@ -37,9 +38,7 @@ void setUpDI() {
     ),
   );
   GetIt.instance.registerSingleton(
-    HomeStore(
-      navigationService: GetIt.instance.get<NavigationService>(),
-    ),
+    HomeStore(),
   );
   GetIt.instance.registerFactory(
     () => BooksRepo(
@@ -61,6 +60,7 @@ void setUpDI() {
     DashboardStore(
       dashboardRepo: GetIt.instance.get<DashboardRepo>(),
       navigationService: GetIt.instance.get<NavigationService>(),
+      connectionService: GetIt.instance.get<ConnectionService>(),
     ),
   );
   GetIt.instance.registerFactory(
@@ -74,5 +74,8 @@ void setUpDI() {
       navigationService: GetIt.instance.get<NavigationService>(),
       connectionService: GetIt.instance.get<ConnectionService>(),
     ),
+  );
+  GetIt.instance.registerFactory(
+    () => WebStore(),
   );
 }

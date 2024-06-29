@@ -6,6 +6,7 @@ import 'package:palm_code/src/books/podo/book_item.dart';
 import 'package:palm_code/src/favorite/favorite_page.dart';
 import 'package:palm_code/src/home/home_page.dart';
 import 'package:palm_code/src/splash/splash_page.dart';
+import 'package:palm_code/src/web/web_page.dart';
 
 class NavigationService {
   static const routeSplash = 'splash';
@@ -13,6 +14,8 @@ class NavigationService {
   static const routeBooks = 'books';
   static const routeBookDetail = 'book_detail';
   static const routeFavorite = 'favorite';
+  static const routeWeb = "web";
+
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   void pop<T>([T? value]) {
@@ -72,6 +75,11 @@ class NavigationService {
           builder: (_) => const FavoritePage(),
           settings: settings,
           maintainState: false,
+        );
+      case routeWeb:
+        return MaterialPageRoute(
+          builder: (_) => WebPage(url: settings.arguments as String?),
+          settings: settings,
         );
       default:
         return MaterialPageRoute(

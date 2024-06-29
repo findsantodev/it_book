@@ -37,7 +37,7 @@ abstract class _SplashStore with Store {
       return _network.init();
     });
     // Initialize necessary components
-    final initialFuturesResult = await Future.wait(
+    await Future.wait(
       [
         localeFuture,
         flavorFuture,

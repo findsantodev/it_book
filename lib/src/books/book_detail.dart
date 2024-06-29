@@ -60,7 +60,9 @@ class _BookDetailState extends State<BookDetail> {
                 children: [
                   PrimaryButton(
                     text: "Baca",
-                    onPressed: () {},
+                    onPressed: () => _favoriteStore.navigateToWebPage(
+                      widget._bookItem?.formats?.textHTML ?? "",
+                    ),
                   )
                 ],
               ),
@@ -294,15 +296,11 @@ class _BookDetailState extends State<BookDetail> {
                         }
                       }
                     },
-                    icon: Observer(
-                      builder: (context) {
-                        return Icon(
-                          Icons.favorite,
-                          color: _isFavorite
-                              ? Theme.of(context).buttonPrimary
-                              : Theme.of(context).brandDark,
-                        );
-                      },
+                    icon: Icon(
+                      Icons.favorite,
+                      color: _isFavorite
+                          ? Theme.of(context).buttonPrimary
+                          : Theme.of(context).brandDark,
                     ),
                   );
                 },

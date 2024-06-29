@@ -48,10 +48,10 @@ abstract class BookItem implements Built<BookItem, BookItemBuilder> {
 
   static Serializer<BookItem> get serializer => _$bookItemSerializer;
 
-  static BookItem? fromJson(Map<String, dynamic> jsonMap) {
+  static BookItem? fromJson(String data) {
     return standardSerializers.deserializeWith(
       BookItem.serializer,
-      jsonMap,
+      json.decode(data),
     );
   }
 

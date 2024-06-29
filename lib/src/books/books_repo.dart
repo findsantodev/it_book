@@ -26,10 +26,10 @@ class BooksRepo {
   }
 
   Future<List<String>> getListOfFavoriteBookFromLocal() async {
-    return SharedPreferencesRepo.instance.getFavoriteBooks();
+    return SharedPreferencesRepo.instance.getFavoriteBooksIds();
   }
 
   Future<void> saveFavoriteBookToLocal(List<String> bookIds) async {
-    return SharedPreferencesRepo.instance.saveFavoriteBooks(bookIds);
+    return SharedPreferencesRepo.instance.saveFavoriteBooksIds(bookIds);
   }
 }
